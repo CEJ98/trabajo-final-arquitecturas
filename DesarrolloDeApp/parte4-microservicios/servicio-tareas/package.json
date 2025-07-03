@@ -1,0 +1,26 @@
+{
+  "name": "servicio-tareas",
+  "version": "1.0.0",
+  "description": "Microservicio para gestión de tareas",
+  "main": "task_service.js",
+  "scripts": {
+    "start": "node task_service.js",
+    "dev": "nodemon task_service.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microservices",
+    "tasks",
+    "nodejs",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
