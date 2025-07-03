@@ -1,0 +1,48 @@
+# Configuración de CI/CD
+name: CI/CD
+
+# Cuando se ejecuta
+on: [push, pull_request]
+
+# Trabajos
+jobs:
+  # Pruebas
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    # Obtener código
+    - uses: actions/checkout@v2
+    
+    # Configurar Node
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '18.x'
+    
+    # Instalar dependencias
+    - name: Instalar todo
+      run: |
+        cd parte1-monolito && npm install
+        cd ../parte2-3-capas && npm install
+        cd ../parte3-rest && npm install
+        cd ../parte4-microservicios && npm install
+    
+    # Ejecutar pruebas
+    - name: Probar todo
+      run: |
+        cd parte1-monolito && npm test
+        cd ../parte2-3-capas && npm test
+        cd ../parte3-rest && npm test
+        cd ../parte4-microservicios && npm test
+
+  # Despliegue
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    # Obtener código
+    - uses: actions/checkout@v2
+    
+    # Desplegar
+    - name: Desplegar
+      run: echo "¡Listo! 🚀" 

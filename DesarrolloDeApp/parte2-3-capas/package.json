@@ -1,0 +1,20 @@
+{
+  "name": "parte2-3-capas",
+  "version": "1.0.0",
+  "description": "Ejemplo de arquitectura de 3 capas con Express.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "3-layers",
+    "architecture",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+} 
