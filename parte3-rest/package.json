@@ -1,0 +1,12 @@
+{
+  "name": "todo-rest",
+  "version": "1.0.0",
+  "description": "Aplicación de TODO list con arquitectura REST",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 
