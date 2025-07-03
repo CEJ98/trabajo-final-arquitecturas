@@ -1,22 +1,21 @@
-// Importamos express
+// Aplicación monolítica para gestión de tareas
 const express = require('express');
 const app = express();
 const port = 3000;
 
-// Para leer JSON
 app.use(express.json());
 
-// Array para guardar las tareas
+// Lista de tareas en memoria
 let tareas = [];
 
-// Rutas para manejar las tareas
+// Endpoints de la API
 
-// 1. Obtener todas las tareas
+// GET - Listar tareas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// 2. Crear una nueva tarea
+// POST - Crear tarea nueva
 app.post('/api/tasks', (req, res) => {
     const tarea = {
         id: tareas.length + 1,
@@ -27,7 +26,7 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(tarea);
 });
 
-// 3. Marcar tarea como completada
+// PUT - Actualizar tarea
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
@@ -39,14 +38,14 @@ app.put('/api/tasks/:id', (req, res) => {
     }
 });
 
-// 4. Borrar una tarea
+// DELETE - Eliminar tarea
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     tareas = tareas.filter(t => t.id !== id);
     res.status(204).send();
 });
 
-// Iniciamos el servidor
+// Levantar servidor
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });

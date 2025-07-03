@@ -1,35 +1,35 @@
-# Patrones de Diseño por Arquitectura
+# Patrones de Diseño Aplicados
 
-## Arquitectura Monolítica
+## En el Monolito
 
-- **Singleton**: Para gestionar recursos compartidos como conexiones a la base de datos
-- **Factory Method**: Para crear objetos tarea de diferentes tipos
-- **Strategy**: Para diferentes algoritmos de ordenamiento de tareas
+- **Singleton**: Manejar cosas compartidas como la conexión a la DB
+- **Factory Method**: Crear diferentes tipos de objetos tarea
+- **Strategy**: Cambiar algoritmos de ordenamiento según necesites
 
-## Arquitectura de 3 Capas
+## En 3 Capas
 
-- **Repository**: La capa de datos abstrae el acceso a los datos
-- **Service Layer**: La capa de lógica contiene las reglas de negocio
-- **Data Transfer Object (DTO)**: Objetos que se pasan entre capas
-- **Facade**: La capa de lógica simplifica la interfaz para la capa de presentación
+- **Repository**: La capa de datos esconde cómo accedes a la info
+- **Service Layer**: La capa de lógica tiene todas las reglas de negocio
+- **Data Transfer Object (DTO)**: Los objetos que pasan entre capas
+- **Facade**: Simplifica la interfaz entre capas
 
-## Arquitectura REST
+## En REST
 
-- **Controller**: Funciones que manejan las rutas HTTP
-- **Resource**: Las tareas se modelan como recursos con URLs
-- **Data Transfer Object (DTO)**: Los JSON enviados y recibidos
+- **Controller**: Las funciones que manejan cada ruta HTTP
+- **Resource**: Modelar las tareas como recursos con URLs
+- **DTO**: Los JSONs que enviás y recibís
 - **Error Handling Middleware**: Manejo centralizado de errores
 
-## Arquitectura de Microservicios
+## En Microservicios
 
-- **API Gateway**: Entrada única a los microservicios
-- **Service Discovery**: Para que los servicios se encuentren entre sí
-- **Circuit Breaker**: Protege de fallos en cascada
-- **Database per Service**: Cada servicio tiene su propia base de datos
-- **Saga**: Para transacciones que abarcan múltiples servicios
+- **API Gateway**: Un solo punto de entrada para todos los servicios
+- **Service Discovery**: Para que los servicios se encuentren entre ellos
+- **Circuit Breaker**: Evita que si se rompe uno se rompan todos
+- **Database per Service**: Cada servicio maneja su propia DB
+- **Saga**: Para transacciones que involucran varios servicios
 
-## Consideraciones
+## Reflexiones
 
-1. **Simplicidad**: No sobre-ingenieriar, aplicar patrones solo cuando resuelven problemas reales
-2. **Contexto**: La idoneidad depende del problema específico y la arquitectura
-3. **Evolución**: Las arquitecturas pueden evolucionar según crecen los requisitos
+- No te compliques con patrones si no los necesitas
+- Depende mucho del contexto específico del proyecto
+- Las arquitecturas pueden ir evolucionando según crece la aplicación

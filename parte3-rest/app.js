@@ -1,34 +1,32 @@
-// API REST para TODO list
+// API REST para gestión de tareas
 const express = require('express');
 const app = express();
 
-// Para leer JSON
 app.use(express.json());
 
-// Array para guardar las tareas
 let tareas = [];
 let idActual = 1;
 
-// Log de peticiones
+// Log para ver las peticiones que llegan
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
     next();
 });
 
-// Manejo de errores
+// Manejo de errores globales
 const errorHandler = (err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: 'Error interno del servidor' });
 };
 
-// Rutas RESTful
+// Endpoints REST
 
-// 1. Obtener todas las tareas
+// GET - Obtener todas las tareas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// 2. Obtener una tarea específica
+// GET - Obtener una tarea por ID
 app.get('/api/tasks/:id', (req, res) => {
     const tarea = tareas.find(t => t.id === parseInt(req.params.id));
     if (!tarea) {
@@ -37,7 +35,7 @@ app.get('/api/tasks/:id', (req, res) => {
     res.json(tarea);
 });
 
-// 3. Crear una nueva tarea
+// POST - Crear nueva tarea
 app.post('/api/tasks', (req, res) => {
     if (!req.body.titulo) {
         return res.status(400).json({ error: 'El título es requerido' });
@@ -54,7 +52,7 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(nuevaTarea);
 });
 
-// 4. Actualizar una tarea
+// PUT - Actualizar tarea existente
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
@@ -70,7 +68,7 @@ app.put('/api/tasks/:id', (req, res) => {
     res.json(tarea);
 });
 
-// 5. Eliminar una tarea
+// DELETE - Eliminar tarea
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = tareas.findIndex(t => t.id === id);
@@ -83,7 +81,7 @@ app.delete('/api/tasks/:id', (req, res) => {
     res.status(204).send();
 });
 
-// 6. Marcar todas las tareas como completadas
+// PATCH - Operación especial para completar todas
 app.patch('/api/tasks/completar-todas', (req, res) => {
     tareas.forEach(tarea => {
         tarea.completada = true;

@@ -1,26 +1,23 @@
-// Capa de Lógica
-// Reglas de negocio y validaciones
+// Capa de lógica de negocio
+// Acá van las validaciones y reglas
 
 const dataLayer = require('../capa-datos/data_layer');
 
 const logicLayer = {
-    // Obtener todas las tareas
     getAllTareas: () => {
         return dataLayer.getAllTareas();
     },
 
-    // Crear una nueva tarea
     createTarea: (titulo) => {
-        // Validación simple
+        // Validar que el título no esté vacío
         if (!titulo || titulo.trim() === '') {
             throw new Error('El título no puede estar vacío');
         }
         return dataLayer.createTarea(titulo);
     },
 
-    // Actualizar una tarea
     updateTarea: (id, datos) => {
-        // Validación simple
+        // Chequear que vengan los datos necesarios
         if (!id) {
             throw new Error('Se requiere un ID');
         }
@@ -30,9 +27,8 @@ const logicLayer = {
         return dataLayer.updateTarea(id, datos);
     },
 
-    // Eliminar una tarea
     deleteTarea: (id) => {
-        // Validación simple
+        // Verificar que hay ID
         if (!id) {
             throw new Error('Se requiere un ID');
         }

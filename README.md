@@ -1,38 +1,29 @@
-# Trabajo Final Integrador - Evolución de Arquitecturas
+# Trabajo Final - Evolución de Arquitecturas de Software
 
 **Estudiante:** Jorge Costilla  
 **Materia:** EAD.DESWEB  
-**Tema:** Evolución de una Aplicación a través de Diferentes Arquitecturas
 
-## 📋 Descripción del Proyecto
+## Descripción
 
-Este proyecto demuestra la evolución de una aplicación de gestión de tareas (TODO List) implementada en **4 arquitecturas diferentes**, cumpliendo con todas las consignas del trabajo final integrador.
+Este proyecto muestra cómo una aplicación simple de TODO list puede implementarse usando diferentes arquitecturas de software. Empezando desde un monolito básico hasta llegar a microservicios con Docker.
 
-## 🏗️ Arquitecturas Implementadas
+## Las 4 Arquitecturas
 
-### 1. **Monolito** (`parte1-monolito/`)
-- ✅ Arquitectura simple y monolítica
-- ✅ Funcionalidades básicas en un solo componente
-- ✅ Análisis de pros, contras y patrones aplicables
-- **Puerto:** 3000
+### 1. Monolito (`parte1-monolito/`)
+Todo en un solo archivo. Simple pero efectivo para empezar.
+- Puerto: 3000
 
-### 2. **3 Capas Distribuida** (`parte2-3-capas/`)
-- ✅ Separación en capas: Presentación, Lógica y Datos
-- ✅ Comunicación distribuida entre componentes
-- ✅ Análisis de ventajas y desventajas
-- **Puerto:** 3001
+### 2. 3 Capas (`parte2-3-capas/`)
+Separé la aplicación en capas: presentación, lógica y datos.
+- Puerto: 3001
 
-### 3. **REST** (`parte3-rest/`)
-- ✅ API RESTful con endpoints estándar
-- ✅ Comunicación mediante servicios REST
-- ✅ Implementación de todos los verbos HTTP
-- **Puerto:** 3002
+### 3. REST API (`parte3-rest/`)
+Implementación completa de una API RESTful con todos los verbos HTTP.
+- Puerto: 3002
 
-### 4. **Microservicios** (`DesarrolloDeApp/parte4-microservicios/`)
-- ✅ API Gateway y Servicio de Tareas independientes
-- ✅ Contenedores Docker para cada servicio
-- ✅ Scripts de automatización
-- **Puertos:** 5000 (Gateway), 5001 (Servicio)
+### 4. Microservicios (`DesarrolloDeApp/parte4-microservicios/`)
+API Gateway + servicio independiente. Con Docker para containerización.
+- Puertos: 5000 (Gateway), 5001 (Servicio)
 
 ## 🚀 Cómo Ejecutar el Proyecto
 

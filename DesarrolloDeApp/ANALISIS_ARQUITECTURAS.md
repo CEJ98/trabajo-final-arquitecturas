@@ -1,57 +1,57 @@
-# Análisis de Arquitecturas - Trabajo Práctico
+# Análisis Comparativo de Arquitecturas
 
-## 1. Arquitectura Monolítica
+## Arquitectura Monolítica
 
-### Ventajas
-- **Simplicidad**: Todo el código está en un solo lugar, fácil de entender
-- **Despliegue simple**: Una sola aplicación para desplegar
-- **Debugging fácil**: Toda la lógica en un mismo proceso
-- **Testing directo**: Pruebas unitarias e integración en un solo proyecto
-- **Rendimiento**: Sin latencia de red entre componentes
-- **Transacciones ACID**: Fácil manejo de consistencia de datos
+### Lo bueno
+- Es súper simple de entender - todo está en un archivo
+- Fácil de hacer deploy, solo subes una cosa
+- Debugging más directo porque no hay cosas distribuidas
+- Pruebas simples, no necesitas levantar múltiples servicios
+- Mejor performance porque no hay llamadas de red internas
+- Transacciones más fáciles de manejar
 
-### Desventajas
-- **Escalabilidad limitada**: No se puede escalar componentes específicos
-- **Acoplamiento alto**: Cambios en una parte pueden afectar todo el sistema
-- **Tecnología única**: Difícil adoptar nuevas tecnologías
-- **Equipos grandes**: Difícil coordinación cuando el equipo crece
-- **Tiempo de despliegue**: Cualquier cambio requiere redesplegar toda la aplicación
-- **Riesgo de falla total**: Si falla un componente, falla toda la aplicación
+### Lo malo
+- No podes escalar partes específicas, es todo o nada
+- Si cambias algo puede afectar todo lo demás
+- Quedas atado a una sola tecnología
+- Con equipos grandes es un quilombo coordinarse
+- Cada cambio requiere redesplegar todo
+- Si se rompe algo, se rompe todo
 
-### Cuándo Usar
-- **Aplicaciones pequeñas a medianas** (menos de 100,000 usuarios)
-- **Equipos pequeños** (1-5 desarrolladores)
-- **Prototipas rápidos** o MVPs
-- **Aplicaciones con lógica de negocio simple**
-- **Cuando los requisitos son estables** y no cambian frecuentemente
-- **Startups en etapa temprana**
+### Cuándo usar monolito
+- Apps chicas o medianas (menos de 100K usuarios)
+- Equipos pequeños (1-5 developers)
+- Prototipos o MVPs que necesitas sacar rápido
+- Cuando la lógica de negocio es bastante simple
+- Si los requirements no cambian mucho
+- Startups que recién arrancan
 
-### Patrones de Diseño Aplicables
-- **Singleton**: Para gestión de recursos compartidos (conexiones DB)
-- **Factory Method**: Para creación de objetos complejos
-- **Strategy**: Para algoritmos intercambiables (ordenamiento, validación)
-- **Template Method**: Para procesos con pasos comunes
-- **Observer**: Para notificaciones dentro del monolito
+### Patrones que van bien
+- **Singleton**: Para compartir cosas como conexiones a la DB
+- **Factory Method**: Para crear objetos más complejos
+- **Strategy**: Para cambiar algoritmos (ej: diferentes formas de ordenar)
+- **Template Method**: Cuando tenés procesos que siguen pasos similares
+- **Observer**: Para notificaciones internas
 
 ---
 
-## 2. Arquitectura de 3 Capas Distribuida
+## Arquitectura de 3 Capas
 
-### Ventajas
-- **Separación clara de responsabilidades**: Presentación, lógica y datos separados
-- **Mantenibilidad mejorada**: Cada capa se puede modificar independientemente
-- **Reutilización**: La lógica de negocio puede ser reutilizada por diferentes interfaces
-- **Escalabilidad por capas**: Se puede escalar cada capa según necesidad
-- **Testing específico**: Pruebas focalizadas por capa
-- **Especialización del equipo**: Desarrolladores pueden especializarse por capa
+### Lo bueno
+- Cada capa tiene su responsabilidad específica - más ordenado
+- Podes cambiar una capa sin tocar las otras
+- La lógica de negocio se puede reutilizar para diferentes frontends
+- Podes escalar cada capa por separado según la necesidad
+- Testing más fácil porque podes probar cada capa independiente
+- El equipo se puede especializar (frontend, backend, DB)
 
-### Desventajas
-- **Complejidad de comunicación**: Latencia entre capas distribuidas
-- **Puntos de falla múltiples**: Cada capa puede fallar independientemente
-- **Overhead de red**: Serialización/deserialización de datos
-- **Debugging complejo**: Errores pueden estar en múltiples capas
-- **Configuración compleja**: Múltiples servicios para configurar
-- **Consistencia de datos**: Más difícil mantener transacciones entre capas
+### Lo malo
+- Más complejo porque hay comunicación entre capas distribuidas
+- Múltiples puntos donde las cosas se pueden romper
+- Overhead de red - serializar y deserializar datos todo el tiempo
+- Debugging más jodido porque el error puede estar en cualquier capa
+- Tenés que configurar múltiples servicios
+- Mantener transacciones entre capas es más complicado
 
 ### Cuándo Usar
 - **Aplicaciones empresariales medianas**

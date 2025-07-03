@@ -1,49 +1,49 @@
 # Aplicación Monolítica - TODO List
 
-Esta es una aplicación simple de TODO list implementada como una arquitectura monolítica.
+Una app simple de tareas implementada como monolito. Todo el código está en un solo archivo.
 
-## ¿Qué es una arquitectura monolítica?
+## ¿Qué es un monolito?
 
-Una arquitectura monolítica es cuando toda la aplicación está en un solo programa. En nuestro caso, todo el código (servidor, lógica de negocio y datos) está en un solo archivo `app.js`.
+Es cuando ponés toda la aplicación en un solo programa. En este caso, todo (servidor, lógica y datos) está en `app.js`.
 
-## Ventajas de una arquitectura monolítica:
+## Ventajas:
 
-- Fácil de desarrollar y entender
-- Fácil de probar
-- Fácil de desplegar (solo un programa)
-- Mejor rendimiento (no hay comunicación entre servicios)
+- Super fácil de entender
+- Testing simple
+- Deploy directo - solo un archivo
+- Mejor performance porque no hay network calls
 
 ## Desventajas:
 
-- No escala bien (todo crece junto)
-- Es difícil mantener el código cuando crece
-- Un error puede afectar a toda la aplicación
-- Es difícil trabajar en equipo
+- No escala bien - es todo o nada
+- Cuando crece se vuelve difícil de mantener
+- Si falla algo, falla todo
+- Con equipos grandes es complicado trabajar
 
-## ¿Cuándo usar una arquitectura monolítica?
+## ¿Cuándo usar monolito?
 
-- Aplicaciones pequeñas
-- Proyectos de aprendizaje
-- Prototipos rápidos
-- Cuando el equipo es pequeño
+- Apps pequeñas
+- Para aprender
+- Prototipos que necesitas hacer rápido
+- Equipos chicos
 
-## Cómo usar esta aplicación
+## Cómo correr esto
 
-1. Instalar dependencias:
+1. Instalar:
 ```bash
 npm install
 ```
 
-2. Iniciar el servidor:
+2. Correr:
 ```bash
 npm start
 ```
 
-3. Probar las rutas:
-- GET /api/tasks - Ver todas las tareas
-- POST /api/tasks - Crear una tarea
-- PUT /api/tasks/:id - Actualizar una tarea
-- DELETE /api/tasks/:id - Eliminar una tarea
+3. Endpoints disponibles:
+- GET /api/tasks - Ver tareas
+- POST /api/tasks - Crear tarea
+- PUT /api/tasks/:id - Actualizar tarea
+- DELETE /api/tasks/:id - Borrar tarea
 
 ## Ejemplo de uso:
 
