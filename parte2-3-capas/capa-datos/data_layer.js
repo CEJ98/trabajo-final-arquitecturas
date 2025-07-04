@@ -1,31 +1,29 @@
-// Capa de datos - manejo de la información
-// Simula una base de datos en memoria
-
+// Acá están los datos - como si fuera la base de datos
 let tareas = [];
-let idActual = 1;
+let contador = 1;
 
 const dataLayer = {
     getAllTareas: () => {
         return tareas;
     },
 
-    createTarea: (titulo) => {
-        const nuevaTarea = {
-            id: idActual++,
-            titulo: titulo,
-            completada: false
+    createTarea: (title) => {
+        const tarea = {
+            id: contador++,
+            title: title,
+            completed: false
         };
-        tareas.push(nuevaTarea);
-        return nuevaTarea;
+        tareas.push(tarea);
+        return tarea;
     },
 
     updateTarea: (id, datos) => {
         const tarea = tareas.find(t => t.id === id);
         if (!tarea) return null;
 
-        // Actualizar solo los campos que vienen
-        if (datos.titulo) tarea.titulo = datos.titulo;
-        if (datos.completada !== undefined) tarea.completada = datos.completada;
+        // cambiar solo lo que viene
+        if (datos.title) tarea.title = datos.title;
+        if (datos.completed !== undefined) tarea.completed = datos.completed;
         
         return tarea;
     },
@@ -33,7 +31,6 @@ const dataLayer = {
     deleteTarea: (id) => {
         const index = tareas.findIndex(t => t.id === id);
         if (index === -1) return false;
-
         tareas.splice(index, 1);
         return true;
     }

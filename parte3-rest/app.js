@@ -1,100 +1,89 @@
-// API REST para gestión de tareas
+// API REST - con todos los métodos HTTP
 const express = require('express');
 const app = express();
 
 app.use(express.json());
 
 let tareas = [];
-let idActual = 1;
+let contador = 1;
 
-// Log para ver las peticiones que llegan
+// para ver qué llega
 app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    console.log(`${req.method} ${req.url}`);
     next();
 });
 
-// Manejo de errores globales
-const errorHandler = (err, req, res, next) => {
-    console.error(err);
-    res.status(500).json({ error: 'Error interno del servidor' });
-};
-
-// Endpoints REST
-
-// Obtener todas las tareas
+// GET todas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// Obtener una tarea por ID
+// GET una específica
 app.get('/api/tasks/:id', (req, res) => {
     const tarea = tareas.find(t => t.id === parseInt(req.params.id));
     if (!tarea) {
-        return res.status(404).json({ error: 'Tarea no encontrada' });
+        return res.status(404).json({ error: 'No existe' });
     }
     res.json(tarea);
 });
 
-// Crear nueva tarea
+// POST nueva tarea
 app.post('/api/tasks', (req, res) => {
-    if (!req.body.titulo) {
-        return res.status(400).json({ error: 'El título es requerido' });
+    if (!req.body.title) {
+        return res.status(400).json({ error: 'Falta el título' });
     }
 
-    const nuevaTarea = {
-        id: idActual++,
-        titulo: req.body.titulo,
-        completada: false,
-        fechaCreacion: new Date().toISOString()
+    const tarea = {
+        id: contador++,
+        title: req.body.title,
+        completed: false,
+        createdAt: new Date().toISOString()
     };
 
-    tareas.push(nuevaTarea);
-    res.status(201).json(nuevaTarea);
+    tareas.push(tarea);
+    res.status(201).json(tarea);
 });
 
-// Actualizar tarea existente
+// PUT actualizar
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
     
     if (!tarea) {
-        return res.status(404).json({ error: 'Tarea no encontrada' });
+        return res.status(404).json({ error: 'No existe' });
     }
 
-    if (req.body.titulo) tarea.titulo = req.body.titulo;
-    if (req.body.completada !== undefined) tarea.completada = req.body.completada;
-    tarea.fechaActualizacion = new Date().toISOString();
+    if (req.body.title) tarea.title = req.body.title;
+    if (req.body.completed !== undefined) tarea.completed = req.body.completed;
+    tarea.updatedAt = new Date().toISOString();
 
     res.json(tarea);
 });
 
-// Eliminar tarea
+// DELETE borrar
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = tareas.findIndex(t => t.id === id);
     
     if (index === -1) {
-        return res.status(404).json({ error: 'Tarea no encontrada' });
+        return res.status(404).json({ error: 'No existe' });
     }
 
     tareas.splice(index, 1);
     res.status(204).send();
 });
 
-// PATCH - Operación especial para completar todas
-app.patch('/api/tasks/completar-todas', (req, res) => {
+// PATCH - completar todas
+app.patch('/api/tasks/complete-all', (req, res) => {
     tareas.forEach(tarea => {
-        tarea.completada = true;
-        tarea.fechaActualizacion = new Date().toISOString();
+        tarea.completed = true;
+        tarea.updatedAt = new Date().toISOString();
     });
     res.json(tareas);
 });
 
-// Aplicar el middleware de errores
-app.use(errorHandler);
-
-// Iniciar el servidor
+// arrancar servidor
 const PORT = 3002;
 app.listen(PORT, () => {
-    console.log(`Servidor REST corriendo en http://localhost:${PORT}`);
+    console.log(`API REST en puerto ${PORT}`);
 }); 

@@ -1,51 +1,50 @@
-// Aplicación monolítica para gestión de tareas
+// TODO list simple - todo en un archivo
 const express = require('express');
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-// Lista de tareas en memoria
+// acá guardo las tareas
 let tareas = [];
 
-// Endpoints de la API
-
-// Listar tareas
+// GET - ver todas las tareas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// Crear tarea nueva
+// POST - agregar nueva tarea
 app.post('/api/tasks', (req, res) => {
     const tarea = {
         id: tareas.length + 1,
-        titulo: req.body.titulo,
-        completada: false
+        title: req.body.title,
+        completed: false
     };
     tareas.push(tarea);
     res.status(201).json(tarea);
 });
 
-// Actualizar tarea
+// PUT - cambiar una tarea
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
     if (tarea) {
-        tarea.completada = true;
+        if (req.body.title) tarea.title = req.body.title;
+        if (req.body.completed !== undefined) tarea.completed = req.body.completed;
         res.json(tarea);
     } else {
-        res.status(404).json({ error: 'Tarea no encontrada' });
+        res.status(404).json({ error: 'No existe esa tarea' });
     }
 });
 
-// Eliminar tarea
+// DELETE - borrar tarea
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     tareas = tareas.filter(t => t.id !== id);
     res.status(204).send();
 });
 
-// Levantar servidor
+// arrancar el servidor
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
