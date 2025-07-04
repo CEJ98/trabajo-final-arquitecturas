@@ -43,7 +43,7 @@ app.get('/tasks', (req, res) => {
     }
 });
 
-// GET /tasks/:id - Obtener una tarea específica
+// Obtener una tarea específica
 app.get('/tasks/:id', (req, res) => {
     try {
         const taskId = validateTaskId(req.params.id);
@@ -64,7 +64,7 @@ app.get('/tasks/:id', (req, res) => {
     }
 });
 
-// POST /tasks - Crear una nueva tarea
+// Crear una nueva tarea
 app.post('/tasks', (req, res) => {
     try {
         const { title, completed = false } = req.body;
@@ -88,7 +88,7 @@ app.post('/tasks', (req, res) => {
     }
 });
 
-// PUT /tasks/:id - Actualizar una tarea existente
+// Actualizar una tarea existente
 app.put('/tasks/:id', (req, res) => {
     try {
         const taskId = validateTaskId(req.params.id);
@@ -124,7 +124,7 @@ app.put('/tasks/:id', (req, res) => {
     }
 });
 
-// DELETE /tasks/:id - Eliminar una tarea
+// Eliminar una tarea
 app.delete('/tasks/:id', (req, res) => {
     try {
         const taskId = validateTaskId(req.params.id);

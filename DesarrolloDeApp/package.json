@@ -2,11 +2,12 @@
   "name": "desarrollo-de-app",
   "version": "1.0.0",
   "description": "Ejemplos de diferentes arquitecturas de software",
-  "main": "index.js",
+  "main": "start-services.sh",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest",
+    "start": "bash start-services.sh",
+    "microservices": "cd parte4-microservicios && docker-compose up -d",
+    "stop": "cd parte4-microservicios && docker-compose down",
+    "test": "cd parte4-microservicios && bash test-microservices.sh",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
