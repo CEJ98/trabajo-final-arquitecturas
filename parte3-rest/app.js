@@ -21,12 +21,12 @@ const errorHandler = (err, req, res, next) => {
 
 // Endpoints REST
 
-// GET - Obtener todas las tareas
+// Obtener todas las tareas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// GET - Obtener una tarea por ID
+// Obtener una tarea por ID
 app.get('/api/tasks/:id', (req, res) => {
     const tarea = tareas.find(t => t.id === parseInt(req.params.id));
     if (!tarea) {
@@ -35,7 +35,7 @@ app.get('/api/tasks/:id', (req, res) => {
     res.json(tarea);
 });
 
-// POST - Crear nueva tarea
+// Crear nueva tarea
 app.post('/api/tasks', (req, res) => {
     if (!req.body.titulo) {
         return res.status(400).json({ error: 'El título es requerido' });
@@ -52,7 +52,7 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(nuevaTarea);
 });
 
-// PUT - Actualizar tarea existente
+// Actualizar tarea existente
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
@@ -68,7 +68,7 @@ app.put('/api/tasks/:id', (req, res) => {
     res.json(tarea);
 });
 
-// DELETE - Eliminar tarea
+// Eliminar tarea
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = tareas.findIndex(t => t.id === id);

@@ -10,12 +10,12 @@ let tareas = [];
 
 // Endpoints de la API
 
-// GET - Listar tareas
+// Listar tareas
 app.get('/api/tasks', (req, res) => {
     res.json(tareas);
 });
 
-// POST - Crear tarea nueva
+// Crear tarea nueva
 app.post('/api/tasks', (req, res) => {
     const tarea = {
         id: tareas.length + 1,
@@ -26,7 +26,7 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(tarea);
 });
 
-// PUT - Actualizar tarea
+// Actualizar tarea
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const tarea = tareas.find(t => t.id === id);
@@ -38,7 +38,7 @@ app.put('/api/tasks/:id', (req, res) => {
     }
 });
 
-// DELETE - Eliminar tarea
+// Eliminar tarea
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     tareas = tareas.filter(t => t.id !== id);
